@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../css/bootstrap.css'
 const Music=()=>{
     const  style={
         display:"none",
@@ -23,12 +24,12 @@ const Music=()=>{
             if(obj !== null ) {
                 let matchMp3=new RegExp(/.\mp3/);
                  if (name.match(matchMp3)) {
-                   setErr('failed hmm')
+                   setUpload(`name : ${name}`)
                  } else {
-                     {setUpload('invalid type')}
+                     setErr('it must be an MP3 format ')
                  }
             } else {
-                console.log('empty')
+                console.log('empty')        
             }
         }
     return(
@@ -42,8 +43,10 @@ const Music=()=>{
                         <form action="" onSubmit={form} >
                             <label htmlFor="music" style={label}>upload song</label>
                             <input type="file" name="upload " id="music" style={style} onChange={uploadSong}/>
-                                {upload == '' ? '' :<button>click</button>}
-                               {err}
+                                
+                                <h6 className="text-muted"> {upload}</h6>
+                                <h6>{err}</h6>
+                                {upload === '' ? <p>share your music</p>:<button className="btn btn-primary">upload</button>}
                         </form>
 
                 </div>
